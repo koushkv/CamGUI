@@ -1,0 +1,737 @@
+# Custom button
+<CustButton@Button>:
+	font_size: 20
+
+<ScreenManagement>:
+    BscanLayoutScreen:
+        name: 'bscanlayout'
+    AdvSettingsScreen:
+        name: 'advsettings'
+<BscanLayoutScreen>:
+    BscanLayout:
+<AdvSettingsScreen>:
+    AdvSettings:
+# Display points to the entry widget 
+<BscanLayout>:
+    
+    canvas.before:
+        Color:
+            rgba: 0,0.3,0.8,1
+        Rectangle:
+            pos: self.pos
+            size: self.size
+    cols: 1
+    orientation: "vertical"
+    id: info
+    display: entry
+    display1: entry1
+    display2: entry2
+    display3: entry3
+    display4: entry4
+    display26: entry26
+    display27: entry27
+    padding :10
+    spacing :10
+
+    active: '1'
+
+	# Where input is displayed 
+
+
+    BoxLayout:
+        orientation: 'vertical'
+        height: 80
+        size_hint: (0.2, None)
+        BoxLayout:
+            orientation: 'horizontal'
+            Label:
+                text: 'Settings'
+                font_name: 'Bookerly'
+                font_size:34
+
+    BoxLayout:
+        orientation: 'vertical'
+        height: 30
+        size_hint: (0.2, None)
+        BoxLayout:
+            orientation: 'horizontal'
+            Label:
+                text: ''
+            Label:
+                text: 'Gain:      '
+                halign: 'right'
+                valign: 'middle'
+                font_name: 'Bookerly'
+                text_size: self.size
+                font_size: 18
+            Slider:
+                id: entry
+                min: 0
+                max: 15
+                step: 1
+                value: app.disp[:-1]
+                orientation: 'horizontal'
+                text: str(entry.value)[:-2]
+            Label:
+                text: str(entry.value)[:-2]
+
+
+    BoxLayout:
+        orientation: 'vertical'
+        height: 30
+        size_hint: (0.2, None)
+        BoxLayout:
+            orientation: 'horizontal'
+            Label:
+                text: 'Number of Averages:      '
+                font_name: 'Bookerly'
+                font_size:18
+                halign: 'right'
+                valign: 'middle'
+                text_size: self.size
+            TextInput:
+                text: app.disp26[:-1]
+                id: entry26
+                font_size:12
+                multiline: False
+
+    BoxLayout:
+        orientation: 'vertical'
+        height: 30
+        size_hint: (0.2, None)
+        BoxLayout:
+            orientation: 'horizontal'
+            Label:
+                text: 'Camspeed:      '
+                font_name: 'Bookerly'
+                font_size:18
+                halign: 'right'
+                valign: 'middle'
+                text_size: self.size
+            TextInput:
+                text: app.disp27[:-1]
+                id: entry27
+                font_size:12
+                multiline: False
+
+    BoxLayout:
+        orientation: 'vertical'
+        height: 30
+        size_hint: (0.2, None)
+        BoxLayout:
+            orientation: 'horizontal'
+            Label:
+                text: 'Exposure Time in microseconds:      '
+                font_name: 'Bookerly'
+                font_size:18
+                halign: 'right'
+                valign: 'middle'
+                text_size: self.size
+            TextInput:
+                text: app.disp1[:-1] # -1 to delete the end char
+                id: entry1
+                font_size: 12
+                multiline: False
+                font_name: 'Bookerly'
+         
+
+    BoxLayout:
+        orientation: 'vertical'
+        height: 30
+        size_hint: (0.2, None)
+        BoxLayout:
+            orientation: 'horizontal'
+            Label:
+                text: 'Resolution (Width):      '
+                font_name: 'Bookerly'
+                font_size:18
+                halign: 'right'
+                valign: 'middle'
+                text_size: self.size
+            TextInput:
+                text: app.disp2[:-1]
+                id: entry2
+                font_size:12
+                multiline: False
+
+    BoxLayout:
+        orientation: 'vertical'
+        height: 30
+        size_hint: (0.2, None)
+        BoxLayout:
+            orientation: 'horizontal'
+            Label:
+                text: 'Resolution (Height):      '
+                font_name: 'Bookerly'
+                font_size:18
+                halign: 'right'
+                valign: 'middle'
+                text_size: self.size
+            TextInput:
+                text: app.disp3[:-1]
+                id: entry3
+                font_size:12
+                multiline: False
+
+
+    BoxLayout:
+        orientation: 'vertical'
+        height: 30
+        size_hint: (0.2, None)
+        BoxLayout:
+            orientation: 'horizontal'
+            Label:
+                text: 'Save Directory:      '
+                font_name: 'Bookerly'
+                font_size:18
+                halign: 'right'
+                valign: 'middle'
+                text_size: self.size
+            TextInput:
+                text: app.disp4[:-1] 
+                id: entry4
+                font_size:12
+                multiline: False
+
+
+            
+
+    BoxLayout:
+        orientation: 'vertical'
+        height: 30
+        size_hint: (0.2, None)
+        BoxLayout:
+            orientation: 'horizontal'
+            Label:
+                text:''
+            Label:
+                text: ''
+            CustButton:
+                text: "Update"
+                size_hint_x: None
+                on_release: info.parameters(entry.text)
+                font_size: 15
+            Label:
+                text: ''
+            CustButton:
+                text: "Advanced"
+                size_hint_x: None
+                on_release: app.root.current = "advsettings"
+                font_size: 15
+
+    BoxLayout:
+        orientation: 'vertical'
+        height: 30
+        size_hint: (0.2, None)
+        BoxLayout:
+            orientation: 'horizontal'
+            Label:
+                text:''
+            Label:
+                text:''
+            CustButton:
+                text: "Run"
+                size_hint_x: None
+                on_release: app.execute()
+                font_size: 15
+
+
+
+<AdvSettings>:
+    canvas.before:
+        Color:
+            rgba: 0,0.3,0.8,1
+        Rectangle:
+            pos: self.pos
+            size: self.size
+    cols: 1
+    orientation: "vertical"
+    id: data1
+    display6: entry6
+    display7: entry7
+    display8: entry8
+    display9: entry9
+    display10: entry10
+    display11: entry11
+    display11a: entry11a
+    display11b: entry11b
+    display11c: entry11c
+    display12: entry12
+    display13: entry13
+    display14: entry14
+    display15: entry15
+    display16: entry16
+    display17: entry17
+    display18: entry18
+    display19: entry19
+    display20: entry20
+    display21: entry21
+    display22: entry22
+    display23: entry23
+    display24: entry24
+    display25: entry25
+
+    padding :10
+    spacing :10
+    active: ("True: 1","False: 0")
+
+    BoxLayout:
+        orientation: 'vertical'
+        height: 60
+        size_hint: (0.2, None)
+        BoxLayout:
+            orientation: 'horizontal'
+            Label:
+                text: 'Advanced Settings'
+                font_name: 'Bookerly'
+                font_size:26             
+
+
+    BoxLayout:
+        orientation: 'vertical'
+        height: 30
+        size_hint: (0.2, None)
+        BoxLayout:
+            orientation: 'horizontal'
+            Label:
+                text: 'Bits per pixel:      '
+                font_name: 'Bookerly'
+                font_size:12
+                halign: 'right'
+                valign: 'middle'
+                text_size: self.size
+            TextInput:
+                text: app.disp6[:-1]
+                id: entry6
+                font_size:12
+                multiline: False
+            Label:
+                text: 'Offset(X):      '
+                font_name: 'Bookerly'
+                font_size:12
+                halign: 'right'
+                valign: 'middle'
+                text_size: self.size
+            TextInput:
+                text: app.disp7[:-1]
+                id: entry7
+                font_size:12
+                multiline: False
+
+
+    BoxLayout:
+        orientation: 'vertical'
+        height: 30
+        size_hint: (0.2, None)
+        BoxLayout:
+            orientation: 'horizontal'
+            Label:
+                text: 'Offset(Y):      '
+                font_name: 'Bookerly'
+                font_size:12
+                halign: 'right'
+                valign: 'middle'
+                text_size: self.size
+            TextInput:
+                text: app.disp8[:-1]
+                id: entry8
+                font_size:12
+                multiline: False
+            Label:
+                text: 'Cambin(X):      '
+                font_name: 'Bookerly'
+                font_size:12
+                halign: 'right'
+                valign: 'middle'
+                text_size: self.size
+            TextInput:
+                text: app.disp9[:-1]
+                id: entry9
+                font_size:12
+                multiline: False
+
+
+    BoxLayout:
+        orientation: 'vertical'
+        height: 30
+        size_hint: (0.2, None)
+        BoxLayout:
+            orientation: 'horizontal'
+            Label:
+                text: 'Cambin(Y):      '
+                font_name: 'Bookerly'
+                font_size:12
+                halign: 'right'
+                valign: 'middle'
+                text_size: self.size
+            TextInput:
+                text: app.disp10[:-1]
+                id: entry10
+                font_size:12
+                multiline: False
+            Label:
+                text: 'Binvalue (X):      '
+                font_name: 'Bookerly'
+                font_size:12
+                halign: 'right'
+                valign: 'middle'
+                text_size: self.size
+            TextInput:
+                text: app.disp11[:-1]
+                id: entry11
+                font_size:12
+                multiline: False
+
+    BoxLayout:
+        orientation: 'vertical'
+        height: 30
+        size_hint: (0.2, None)
+        BoxLayout:
+            orientation: 'horizontal'
+            Label:
+                text: 'Binvalue (Y):      '
+                font_name: 'Bookerly'
+                font_size:12
+                halign: 'right'
+                valign: 'middle'
+                text_size: self.size
+            TextInput:
+                text: app.disp11a[:-1]
+                id: entry11a
+                font_size:12
+                multiline: False
+            Label:
+                text: 'Bscanbinx (at output):      '
+                font_name: 'Bookerly'
+                font_size:12
+                halign: 'right'
+                valign: 'middle'
+                text_size: self.size
+            TextInput:
+                text: app.disp11b[:-1]
+                id: entry11b
+                font_size:12
+                multiline: False
+
+
+    BoxLayout:
+        orientation: 'vertical'
+        height: 30
+        size_hint: (0.2, None)
+        BoxLayout:
+            orientation: 'horizontal'
+            Label:
+                text: 'USB Traffic:      '
+                font_name: 'Bookerly'
+                font_size:12
+                halign: 'right'
+                valign: 'middle'
+                text_size: self.size
+            TextInput:
+                text: app.disp12[:-1]
+                id: entry12
+                font_size:12
+                multiline: False
+            Label:
+                text: 'Number of FFT Points:      '
+                font_name: 'Bookerly'
+                font_size:12
+                halign: 'right'
+                valign: 'middle'
+                text_size: self.size
+            TextInput:
+                text: app.disp13[:-1]
+                id: entry13
+                font_size:12
+                multiline: False
+
+
+    BoxLayout:
+        orientation: 'vertical'
+        height: 30
+        size_hint: (0.2, None)
+        BoxLayout:
+            orientation: 'horizontal'
+            Label:
+                text: 'Save individual frames:      '
+                font_name: 'Bookerly'
+                font_size:12
+                halign: 'right'
+                valign: 'middle'
+                text_size: self.size
+            Label:
+                size_hint: 0.4,1
+                text: 'No'
+            Slider:
+                id: entry14
+                size_hint:0.3,1
+                min: 0
+                max: 1
+                step: 1
+                value: app.disp14[:-1]
+                orientation: 'horizontal'
+                text: str(entry14.value)[:-2]
+            Label:
+                size_hint: 0.4,1
+                text: 'Yes'
+            
+            Label:
+                text: 'Do not normalize:      '
+                font_name: 'Bookerly'
+                font_size:12
+                halign: 'right'
+                valign: 'middle'
+                text_size: self.size
+            Label:
+                size_hint: 0.3,1
+                text: 'No'
+            Slider:
+                id: entry25
+                size_hint: 0.3,1
+                min: 0
+                max: 1
+                step: 1
+                value: app.disp25[:-1]
+                orientation: 'horizontal'
+                text: str(entry25.value)[:-2]
+            Label:
+                size_hint: 0.4,1
+                text: 'Yes'
+            
+    BoxLayout:
+        orientation: 'vertical'
+        height: 30
+        size_hint: (0.2, None)
+        BoxLayout:
+            orientation: 'horizontal'
+            Label:
+                text: 'Manual frame averaging:'
+                font_name: 'Bookerly'
+                font_size:12
+                halign: 'right'
+                valign: 'middle'
+            Label:
+                size_hint: 0.4,1
+                text: 'No  '
+            Slider:
+                id: entry15
+                size_hint: 0.3,1
+                min: 0
+                max: 1
+                step: 1
+                value: app.disp15[:-1]
+                orientation: 'horizontal'
+                text: str(entry15.value)[:-2]
+            Label:
+                size_hint: 0.3,1
+                text: 'Yes'
+            
+            Label:
+                text: 'Number of manual averages:      '
+                font_name: 'Bookerly'
+                font_size:12
+                halign: 'right'
+                valign: 'middle'
+                text_size: self.size
+            TextInput:
+                text: app.disp16[:-1]
+                id: entry16
+                font_size:12
+                multiline: False
+
+
+    BoxLayout:
+        orientation: 'vertical'
+        height: 30
+        size_hint: (0.2, None)
+        BoxLayout:
+            orientation: 'horizontal'
+            Label:
+                text: 'Save interferograms:      '
+                font_name: 'Bookerly'
+                font_size:12
+                halign: 'right'
+                valign: 'middle'
+                text_size: self.size
+            Label:
+                size_hint: 0.4,1
+                text: 'No'
+            Slider:
+                id: entry17
+                size_hint: 0.3,1
+                min: 0
+                max: 1
+                step: 1
+                value: app.disp17[:-1]
+                orientation: 'horizontal'
+                text: str(entry17.value)[:-2]
+            Label:
+                size_hint: 0.4,1
+                text: 'Yes'
+            
+            Label:
+                text: 'Moving average (n):      '
+                font_name: 'Bookerly'
+                font_size:12
+                halign: 'right'
+                valign: 'middle'
+                text_size: self.size
+            TextInput:
+                text: app.disp18[:-1]
+                id: entry18
+                font_size:12
+                multiline: False
+
+
+    BoxLayout:
+        orientation: 'vertical'
+        height: 30
+        size_hint: (0.2, None)
+        BoxLayout:
+            orientation: 'horizontal'
+            Label:
+                text: 'Number of display points:      '
+                font_name: 'Bookerly'
+                font_size:12
+                halign: 'right'
+                valign: 'middle'
+                text_size: self.size
+            TextInput:
+                text: app.disp19[:-1]
+                id: entry19
+                font_size:12
+                multiline: False
+            Label:
+                text: 'Lambda (min):      '
+                font_name: 'Bookerly'
+                font_size:12
+                halign: 'right'
+                valign: 'middle'
+                text_size: self.size
+            TextInput:
+                text: app.disp20[:-1]
+                id: entry20
+                font_size:12
+                multiline: False
+
+
+    BoxLayout:
+        orientation: 'vertical'
+        height: 30
+        size_hint: (0.2, None)
+        BoxLayout:
+            orientation: 'horizontal'
+            Label:
+                text: 'Lambda (max):      '
+                font_name: 'Bookerly'
+                font_size:12
+                halign: 'right'
+                valign: 'middle'
+                text_size: self.size
+            TextInput:
+                text: app.disp21[:-1]
+                id: entry21
+                font_size:12
+                multiline: False
+            Label:
+                text: '2D Median filter:      '
+                font_name: 'Bookerly'
+                font_size:12
+                halign: 'right'
+                valign: 'middle'
+                text_size: self.size
+            TextInput:
+                text: app.disp22[:-1]
+                id: entry22
+                font_size:12
+                multiline: False
+
+
+    BoxLayout:
+        orientation: 'vertical'
+        height: 30
+        size_hint: (0.2, None)
+        BoxLayout:
+            orientation: 'horizontal'
+            Label:
+                text: 'Increase FFT points:      '
+                font_name: 'Bookerly'
+                font_size:12
+                halign: 'right'
+                valign: 'middle'
+                text_size: self.size
+            TextInput:
+                text: app.disp23[:-1]
+                id: entry23
+                font_size:12
+                multiline: False
+            Label:
+                text: 'Row-wise normalize:      '
+                font_name: 'Bookerly'
+                font_size:12
+                halign: 'right'
+                valign: 'middle'
+                text_size: self.size
+            Label:
+                size_hint: 0.3,1
+                text: 'No'
+            Slider:
+                id: entry24
+                size_hint: 0.3,1
+                min: 0
+                max: 1
+                step: 1
+                value: app.disp24[:-1]
+                orientation: 'horizontal'
+                text: str(entry24.value)[:-2]
+            Label:
+                size_hint: 0.4,1
+                text: 'Yes'
+
+
+
+    BoxLayout:
+        orientation: 'vertical'
+        height: 30
+        size_hint: (0.2, None)
+        BoxLayout:
+            orientation: 'horizontal'
+            Label:
+                text: 'Bscanbiny (at output):      '
+                font_name: 'Bookerly'
+                font_size:12
+                halign: 'right'
+                valign: 'middle'
+                text_size: self.size
+            TextInput:
+                text: app.disp11c[:-1]
+                id: entry11c
+                font_size:12
+                multiline: False
+            Label:
+                text: ''
+            Label:
+                text: ''
+
+    BoxLayout:
+        orientation: 'vertical'
+        height: 30
+        size_hint: (0.2, None)
+        BoxLayout:
+            orientation: 'horizontal'
+            Label:
+                text: ''
+            CustButton:
+                text: "Update"
+                size_hint_x: None
+                on_press: data1.parameters1(entry6.text)
+                font_size: 15
+            Label:
+                text: ''
+            Label:
+                text: ''
+            CustButton:
+                text: "Back"
+                size_hint_x: None
+                on_release: app.root.current = "bscanlayout"
+                font_size: 15
