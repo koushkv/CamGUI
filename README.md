@@ -7,4 +7,4 @@ Packaging for Windows, Linux and OS X is yet to be done.
 ## To run this app
 1. Clone this repository or just download the zip file and extract it to the desired directory.
 2. Locate the path for `BscanFFTspinjnt.ini` and `BscanFFTspinjnt.bin` in `bscan.py`.
-3. Now the python file should run as expected.
+3. Run `bscan.py`.
