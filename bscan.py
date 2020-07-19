@@ -48,7 +48,7 @@ class BscanLayout(GridLayout):
 ##            print(display1)
     def parameters(self, data):
 
-        with open("/home/oct/Documents/Project/FDOCT-master/build/BscanFFTspinjnt.ini", "r") as file:
+        with open("path/to/the/ini/file", "r") as file:
             #read a list of lines into data
             data = file.readlines()
         data[3] = self.display.text+'\n'
@@ -62,7 +62,7 @@ class BscanLayout(GridLayout):
         data[17] = self.display27.text+'\n'
         data[35] = self.display26.text+'\n'
 
-        with open("/home/oct/Documents/Project/FDOCT-master/build/BscanFFTspinjnt.ini", "w") as file:
+        with open("path/to/the/ini/file", "w") as file:
             file.writelines( data )
 
 # Creating another class for the advanced settings screen
@@ -71,7 +71,7 @@ class AdvSettings(GridLayout):
 
 
     def parameters1(self, data):
-        with open("/home/oct/Documents/Project/FDOCT-master/build/BscanFFTspinjnt.ini", "r") as file:
+        with open("path/to/the/ini/file", "r") as file:
             #read a list of lines into data
             data = file.readlines()
 
@@ -101,7 +101,7 @@ class AdvSettings(GridLayout):
         data[61] = self.display25.text+'\n'
 
 
-        with open("/home/oct/Documents/Project/FDOCT-master/build/BscanFFTspinjnt.ini", "w") as file:
+        with open("path/to/the/ini/file", "w") as file:
             file.writelines( data )
 
 
@@ -117,7 +117,7 @@ class ScreenManagement(ScreenManager):
 
 # Creating App class (very important!)
 class BscanApp(App):
-    with open("/home/oct/Documents/Project/FDOCT-master/build/BscanFFTspinjnt.ini", "r") as f:
+    with open("path/to/the/ini/file", "r") as f:
         dat = f.readlines()
         disp = dat[3]
 
@@ -152,7 +152,7 @@ class BscanApp(App):
         disp27 = dat[17]
 
     def execute(self):
-        s = subprocess.check_call("cd ~/Documents/Project/FDOCT-master/build; ./BscanFFTspinjnt.bin", shell = True)  #runs BscanFFTspinjnt
+        s = subprocess.check_call("path/to/the/bin/directory/; ./BscanFFTspinjnt.bin", shell = True)  #runs BscanFFTspinjnt
     def build(self):
         return ScreenManagement()
 
