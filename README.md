@@ -10,3 +10,6 @@ Packaging for Windows, Linux and OS X is yet to be done.
 3. Run `bscan.py`.
 ## Screenshots
 ![Basic](/images/Basic.jpg)
+*Basic settings screen*
+![Advanced](/images/Adv.jpg)
+*Advanced settings screen*
