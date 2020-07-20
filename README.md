@@ -9,8 +9,5 @@ Packaging for Windows, Linux and OS X is yet to be done.
 2. Locate the path for `BscanFFTspinjnt.ini` and `BscanFFTspinjnt.bin` in `bscan.py`.
 3. Run `bscan.py`.
 ## Screenshots
-1. ![Basic](/images/Basic.jpg)
+![Basic](/images/Basic.jpg)
 *Basic settings screen*
-
-2. ![Advanced](/images/Adv.jpg)
-*Advanced settings screen*
